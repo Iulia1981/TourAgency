@@ -10,6 +10,10 @@ var users = require('./routes/users');
 
 var app = express();
 
+//создаем порт
+app.set('port', process.env.PORT || 3000);
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -41,6 +45,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(app.get('port'), function () {
+  console.log('Express running at http://localhost:' + app.get('port') + ':Press Ctrl+C for finish');
 });
 
 module.exports = app;
